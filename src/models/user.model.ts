@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { IUser } from "../interfaces/user.interface";
 import { STATUS_VALUES, USER_ROLE_VALUES } from "../constants/user.constant";
+import hashedPassword from "../utils/hashedPassword";
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -68,8 +69,17 @@ const userSchema = new mongoose.Schema<IUser>(
       type: Date,
     },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 );
+
+
+//Hash Password before saving
+userSchema.pre("save", async function () {
+  // Only hash the password if it has been modified (or is new)
+  if (!this.isModified("password")) return;
+  this.password = await hashedPassword(this.password);
+});
+
 
 const UserModel = mongoose.model<IUser>("User", userSchema);
 export default UserModel;
