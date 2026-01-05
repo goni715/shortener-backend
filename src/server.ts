@@ -5,7 +5,7 @@ import dbConnect from "./utils/dbConnect";
 
 let server: Server;
 
-const port = config.port || 8080;
+const port = config.port || 9090;
 
 async function main() {
     try {
