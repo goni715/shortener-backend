@@ -1,6 +1,7 @@
 import { Server } from "http";
 import app from "./app";
 import config from "./config";
+import dbConnect from "./utils/dbConnect";
 
 let server: Server;
 
@@ -8,6 +9,7 @@ const port = config.port || 8080;
 
 async function main() {
     try {
+      await dbConnect();
       server = app.listen(port,  () => {
         console.log(`Shortener Backend Server listening on port ${port}`);
       });
