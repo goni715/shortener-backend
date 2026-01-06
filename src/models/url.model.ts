@@ -27,7 +27,10 @@ const urlSchema = new Schema<IUrl>(
       default: 0
     },
   },
-  { timestamps: true }
+  { 
+    timestamps: true,
+    versionKey: false
+  }
 );
 
 const UrlModel = model<IUrl>("Url", urlSchema);

@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import globalErrorHandler from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import AuthRoutes from "./routes/auth.routes";
+import UrlRoutes from "./routes/url.routes";
 
 
 const app: Application = express();
@@ -27,6 +28,7 @@ app.use(bodyParser.json())
 
 //application routes
 app.use('/api/v1/auth', AuthRoutes);
+app.use('/api/v1/url', UrlRoutes);
 
 // Global Error-handling
 app.use(globalErrorHandler);
