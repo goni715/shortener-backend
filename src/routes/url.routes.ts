@@ -15,6 +15,20 @@ router.post(
   validationMiddleware(createShortUrlSchema),
   UrlController.createShortUrl
 );
+router.get(
+  "/get-urls",
+  AuthMiddleware(UserRole.user),
+  UrlController.getUrls
+);
+router.get(
+  "/redirect/:code",
+  UrlController.redirectUrl
+);
+router.delete(
+  "/delete-url/:urlId",
+  AuthMiddleware(UserRole.user),
+  UrlController.deleteUrl
+);
 
 const UrlRoutes = router;
 export default UrlRoutes;
