@@ -63,7 +63,7 @@ const userSchema = new mongoose.Schema<IUser>(
       minlength: 6,
     },
     forgotOtpstatus: {
-      type: Number,
+      type: Number
     },
     forgotOtpExpires: {
       type: Date,
