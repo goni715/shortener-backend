@@ -369,18 +369,4 @@ This uses `tsx` to run TypeScript directly without compilation.
 - **Validation First** - Zod schemas validate all incoming data
 - **Middleware Pipeline** - Request validation, authentication, and error handling via middleware
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow the existing code style and patterns when adding new features.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-
-**Osman Goni** - gonidev715@gmail.com
-
-## 📧 Support
-
-For issues, questions, or suggestions, please open an issue in the repository.
+**Developed with ❤️ by the Osman Goni**
