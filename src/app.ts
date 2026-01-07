@@ -11,7 +11,18 @@ import UrlRoutes from "./routes/url.routes";
 const app: Application = express();
 
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://shortener-goni.vercel.app"
+    ],
+    credentials: true,
+  }),
+);
 app.use(morgan('dev'));
 
 app.get('/', (req:Request, res:Response) => {
