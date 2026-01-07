@@ -2,6 +2,13 @@
 
 A production-ready URL Shortener API built with **Express.js**, **MongoDB**, **TypeScript**, and the **MVC (Model-View-Controller)** architectural pattern. This API allows users to register, authenticate, and manage shortened URLs with comprehensive error handling and validation.
 
+
+## Demo
+
+- **Live URL:** https://shortener-backend-goni.vercel.app
+- **GitHub Repository:** https://github.com/goni715/shortener-backend
+- **Postman Documentation:** https://documenter.getpostman.com/view/17161589/2sBXVeFCAb
+
 ## 🌟 Features
 
 - **User Authentication** - Register, verify email via OTP, and login with JWT tokens
@@ -75,17 +82,20 @@ src/
 ### Installation
 
 1. **Clone the repository:**
+
 ```bash
-git clone <repository-url>
-cd shortener-express-api
+git clone https://github.com/goni715/shortener-backend
+cd shortener-backend
 ```
 
 2. **Install dependencies:**
+
 ```bash
 yarn install
 ```
 
 3. **Create a `.env` file** in the project root:
+
 ```env
 NODE_ENV=development
 PORT=9090
@@ -94,16 +104,16 @@ PORT=9090
 DATABASE_URL=mongodb_connection_string_here
 
 # Password hashing
-BCRYPT_SALT_ROUNDS=10
+BCRYPT_SALT_ROUNDS=your_salt_number
 
 # Frontend base URL
-SHORT_BASE_URL=http://localhost:3000
+SHORT_BASE_URL=https://shortener-goni.vercel.app --your front-end url
 
 # JWT configuration
 JWT_ACCESS_SECRET=your_access_token_secret
 JWT_REFRESH_SECRET=your_refresh_token_secret
-JWT_ACCESS_EXPIRES_IN=7d
-JWT_REFRESH_EXPIRES_IN=15d
+JWT_ACCESS_EXPIRES_IN=access_expires_time
+JWT_REFRESH_EXPIRES_IN=refresh_expires_time
 
 # SMTP email configuration
 SMTP_USERNAME=your_email_address
@@ -112,26 +122,45 @@ SMTP_FROM=sender_email_address
 ```
 
 4. **Start the development server:**
+
 ```bash
 yarn run dev
 ```
 
 The server will run on `http://localhost:9090`
 
+6. **Build for production:**
+   ```bash
+   yarn run build
+   yarn start
+   ```
+
+
+```
+
 ## 📦 Dependencies
 
 ```json
 {
-  "bcryptjs": "^3.0.3",      // Password hashing
-  "body-parser": "^2.2.1",   // Request body parsing
-  "cors": "^2.8.5",          // Cross-Origin Resource Sharing
-  "dotenv": "^17.2.3",       // Environment variables
-  "express": "^5.2.1",       // Web framework
-  "jsonwebtoken": "^9.0.2",  // JWT authentication
-  "mongoose": "^9.0.2",      // MongoDB ODM
-  "nodemailer": "^7.0.9",    // Email service
-  "zod": "^3.24.2"           // Schema validation
+  "bcryptjs": "^3.0.3", // Password hashing
+  "body-parser": "^2.2.1", // Request body parsing
+  "cors": "^2.8.5", // Cross-Origin Resource Sharing
+  "dotenv": "^17.2.3", // Environment variables
+  "express": "^5.2.1", // Web framework
+  "jsonwebtoken": "^9.0.2", // JWT authentication
+  "mongoose": "^9.0.2", // MongoDB ODM
+  "nodemailer": "^7.0.9", // Email service
+  "zod": "^3.24.2" // Schema validation
 }
+```
+
+ **Postman Env**:
+```env
+base_url=hhttp://localhost:9090/api/v1
+#or
+base_url=https://shortener-backend-goni.vercel.app/api/v1
+UserToken=accessToken_here
+
 ```
 
 ## 🔌 API Endpoints
@@ -139,16 +168,20 @@ The server will run on `http://localhost:9090`
 ### Authentication Routes
 
 #### 1. Register User
+
 - **Endpoint:** `POST /api/auth/register-user`
 - **Request Body:**
+
 ```json
 {
   "fullName": "Osman Goni",
   "email": "gonidev715@gmail.com",
-  "password": "123456"  // Minimum 6 characters
+  "password": "123456" // Minimum 6 characters
 }
 ```
-- **Response:** 
+
+- **Response:**
+
 ```json
 {
   "success": true,
@@ -158,15 +191,19 @@ The server will run on `http://localhost:9090`
 ```
 
 #### 2. Verify Email
+
 - **Endpoint:** `POST /api/auth/verify-email`
 - **Request Body:**
+
 ```json
 {
   "email": "gonidev715@gmail.com",
   "otp": "184888"
 }
 ```
+
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -176,15 +213,19 @@ The server will run on `http://localhost:9090`
 ```
 
 #### 3. Login User
+
 - **Endpoint:** `POST /api/auth/login-user`
 - **Request Body:**
+
 ```json
 {
   "email": "gonidev715@gmail.com",
   "password": "123456"
 }
 ```
+
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -198,15 +239,19 @@ The server will run on `http://localhost:9090`
 ### URL Shortening Routes
 
 #### 4. Create Short URL
+
 - **Endpoint:** `POST /api/url/create-short-url`
 - **Headers:** `Authorization: <accessToken>`
 - **Request Body:**
+
 ```json
 {
   "originalUrl": "https://www.cricbuzz.com/cricket-news/137172/not-at-the-cost-of-national-humiliation-bangladesh-press-for-venue-shift"
 }
 ```
+
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -225,12 +270,14 @@ The server will run on `http://localhost:9090`
 ```
 
 #### 5. Get All URLs
+
 - **Endpoint:** `GET /api/url/get-urls`
 - **Headers:** `Authorization: <accessToken>`
-- **Query Parameters:** 
+- **Query Parameters:**
   - `page` (optional, default: 1)
   - `limit` (optional, default: 10)
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -255,9 +302,11 @@ The server will run on `http://localhost:9090`
 ```
 
 #### 6. Redirect to Original URL
+
 - **Endpoint:** `GET /api/url/redirect/:shortCode`
 - **Headers:** `Authorization: <accessToken>`
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -267,9 +316,11 @@ The server will run on `http://localhost:9090`
 ```
 
 #### 7. Delete URL
+
 - **Endpoint:** `DELETE /api/url/delete-url/:urlId`
 - **Headers:** `Authorization: <accessToken>`
 - **Response:**
+
 ```json
 {
   "success": true,
@@ -287,19 +338,23 @@ Authorization: <accessToken>
 
 ## ✅ Validation
 
-The API uses **Zod** for schema validation on all requests. Invalid data will return:
+The API uses **Zod** for schema validation. Invalid data will return: For Example
 
 ```json
 {
   "success": false,
-  "message": "Validation failed",
-  "errors": [...]
+  "message": "Invalid email address",
+  "errors": {
+    "email": "Invalid email address",
+    "password": "Password minimum 6 characters long"
+  }
 }
 ```
 
 ## 🛠️ Development
 
 ### Running the Server
+
 ```bash
 yarn run dev
 ```
