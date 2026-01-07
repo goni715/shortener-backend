@@ -68,7 +68,7 @@ src/
 
 ### Prerequisites
 
-- **Node.js** (v14 or higher)
+- **Node.js** (v24 or higher)
 - **yarn** or npm package manager
 - **MongoDB** (local or cloud instance)
 
@@ -144,7 +144,7 @@ The server will run on `http://localhost:9090`
 ```json
 {
   "fullName": "Osman Goni",
-  "email": "user@example.com",
+  "email": "gonidev715@gmail.com",
   "password": "123456"  // Minimum 6 characters
 }
 ```
@@ -152,7 +152,8 @@ The server will run on `http://localhost:9090`
 ```json
 {
   "success": true,
-  "message": "User registered successfully. Please verify your email."
+  "message": "Please check your email to verify",
+  "data": null
 }
 ```
 
@@ -161,7 +162,7 @@ The server will run on `http://localhost:9090`
 - **Request Body:**
 ```json
 {
-  "email": "user@example.com",
+  "email": "gonidev715@gmail.com",
   "otp": "184888"
 }
 ```
@@ -169,7 +170,8 @@ The server will run on `http://localhost:9090`
 ```json
 {
   "success": true,
-  "message": "Email verified successfully"
+  "message": "Your account is verified successfully",
+  "data": null
 }
 ```
 
@@ -178,7 +180,7 @@ The server will run on `http://localhost:9090`
 - **Request Body:**
 ```json
 {
-  "email": "user@example.com",
+  "email": "gonidev715@gmail.com",
   "password": "123456"
 }
 ```
@@ -201,7 +203,7 @@ The server will run on `http://localhost:9090`
 - **Request Body:**
 ```json
 {
-  "originalUrl": "https://www.example.com/very-long-url-that-needs-shortening"
+  "originalUrl": "https://www.cricbuzz.com/cricket-news/137172/not-at-the-cost-of-national-humiliation-bangladesh-press-for-venue-shift"
 }
 ```
 - **Response:**
