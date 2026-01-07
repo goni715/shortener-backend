@@ -129,7 +129,7 @@ yarn run dev
 
 The server will run on `http://localhost:9090`
 
-6. **Build for production:**
+5. **Build for production:**
    ```bash
    yarn run build
    yarn start
